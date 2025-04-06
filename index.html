@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom</title>
+</head>
+<style>
+    .js-input{
+        padding: 5px 10px;
+        border-radius: 15px;
+        border: solid 1px rgb(16, 217, 183);
+        outline:none;
+    }
+ .calc-button{
+        border: none;
+        padding: 10px 20px;
+        box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+        border-radius: 20px;
+        color: white;
+        background-color: black;
+        cursor: pointer;
+        transition: box-shadow 0.15s ease;
+    }
+
+    .calc-button:hover{
+        box-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+    }
+
+    .calc-button:active{
+        color: black;
+        background-color: white;
+    }
+
+    .sub-button{
+        border: none;
+        cursor: pointer;
+        padding: 10px 20px;
+        box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+        border-radius: 20px;
+        color: white;
+        background-color: black;
+    }
+
+    .sub-button:hover{
+        box-shadow: 2px 2px 10px rgba(0,0,0,0.6);
+    }
+
+    .subscribed{
+        background-color: white;
+        color: black;
+    }
+</style>
+
+<body>
+    <h1>Amazon Shipping Calculator</h1>
+
+    <p>Order under $100 = +$10 shipping</p>
+
+    <p>Order over $100 = FREE shipping </p>
+
+    <input class="js-input" placeholder="Cost of Order" onkeydown="
+    keydown();
+    "> 
+    <button class="calc-button" onclick="calculateShipping()">
+    Calculate
+    </button>
+
+    <p class="js-show-Totall"></p>
+
+    <button onclick="fun()" class="sub-button">
+        Subscribe
+    </button>
+    
+</body>
+<script>
+    function calculateShipping() {
+        let cost = parseInt(document.querySelector('.js-input').value);
+        if (cost < 100) {
+            cost += 10;
+        }
+        document.querySelector('.js-show-Totall')
+            .innerHTML = `Total cost of  the product :$${cost}`;
+    }
+
+    function keydown() {
+        if (event.key === 'Enter') {
+            calculateShipping();
+        }
+    }
+
+     
+    function fun(){
+    const buttonElem = document.querySelector('.sub-button');
+    if(buttonElem.innerText === 'Subscribe'){
+        buttonElem.innerHTML = 'Subscribed';
+        buttonElem.classList.add('subscribed')
+    } else{
+        buttonElem.innerHTML = 'Subscribe';
+        buttonElem.classList.remove('subscribed')
+    }
+
+    }
+</script>
+
+</html>
